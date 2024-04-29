@@ -14,7 +14,7 @@ class Client(Base):
     phone = Column(String(20), unique=True, nullable=False)
     enterprise_name = Column(String(255), unique=False, nullable=False)
     last_update_at = Column(DateTime, nullable=True)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.now())
     contact_commercial_id = Column(Integer, ForeignKey("user.id"))
 
     contact_commercial = relationship("User", foreign_keys=[contact_commercial_id])

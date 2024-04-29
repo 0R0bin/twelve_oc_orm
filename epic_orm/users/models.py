@@ -1,8 +1,9 @@
 import datetime
 
-from app import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import declarative_base, relationship
+
+Base = declarative_base()
 
 class User(Base):
     __tablename__ = "user"
@@ -17,8 +18,14 @@ class User(Base):
 
     role = relationship("Role", foreign_keys=[role_id])
 
+    def __repr__(self):
+        return f'User {self.nom}'
+
 class Role(Base):
     __tablename__ = "role"
 
     id = Column(Integer, primary_key=True)
     nom = Column(String(255), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'User {self.nom}'
