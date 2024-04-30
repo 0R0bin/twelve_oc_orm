@@ -1,7 +1,10 @@
 import json
 import sqlalchemy as db
 
-from users.models import User, Role
+from clients.models import ClientModels
+from contracts.models import ContractModels
+from events.models import EventModels
+from users.models import UserModels
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 with open("epic_orm/env.json", "r") as f:
@@ -16,20 +19,13 @@ engine = db.create_engine(
     echo=True)
 
 # conn = engine.connect()
-metadata = db.MetaData() #extracting the metadata
-print(metadata)
 Base = declarative_base()
-# Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
-Base.metadata.create_all(engine)
-print(Base.metadata)
+# User Models
+UserModels.init_db(engine=engine)
+ClientModels.init_db(engine=engine)
+ContractModels.init_db(engine=engine)
+EventModels.init_db(engine=engine)
 session.commit()
-
-# Session = sessionmaker(bind=engine)
-# session = Session()
-
-# Base = declarative_base()
-
-# Base.metadata.create_all(engine)
