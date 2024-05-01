@@ -13,6 +13,7 @@ def gen_jwt_with_user_info(obj_user):
     """
     env = read_env_file()
     data = {
+        'id': obj_user.employe_number,
         'username': obj_user.employe_number,
         'exp': dt.datetime.now(tz=dt.timezone.utc) + dt.timedelta(minutes=env['LIFETIME_TOKEN']),
         'role': obj_user.role.id
