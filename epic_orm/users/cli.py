@@ -27,7 +27,7 @@ def create():
     if authorized is False:
         return
 
-    info_user = uViews.get_info_create_user()
+    info_user = uViews.get_info_user(True)
     uCtrl.save_user_to_db(info_user)
     click.echo('Utilisateur ajouté')
 
@@ -39,7 +39,7 @@ def delete():
     if authorized is False:
         return
 
-    info_filter = uViews.get_info_filter_del_user()
+    info_filter = uViews.get_info_filter_user(True)
     user = uCtrl.get_user_with_filter(info_filter)
 
     if user == 404:
@@ -63,6 +63,20 @@ def modify():
     if authorized is False:
         return
 
-    info_user = uViews.get_info_create_user()
-    uCtrl.save_user_to_db(info_user)
-    click.echo('Utilisateur ajouté')
+    info_filter = uViews.get_info_filter_user(False)
+    user = uCtrl.get_user_with_filter(info_filter)
+
+    if user == 404:
+        click.echo('Utilisateur pas trouvé')
+        return
+    
+    choice = uViews.confirm_user(user)
+
+    if choice is False:
+        click.echo('Modification annulée')
+        return
+
+    info_user = uViews.get_info_user(False)
+    uCtrl.put_user(info_user, user)
+    click.echo('Modification confirmée')
+

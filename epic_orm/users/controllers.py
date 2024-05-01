@@ -23,11 +23,23 @@ def save_user_to_db(info_user):
     p.session.commit()
 
 
+def put_user(info_user, user):
+    """ With information provided, put user in database """
+    print(f'Je suis arrivé jusque là ! {user}')
+    user.employe_number = info_user['en']
+    user.nom = info_user['name']
+    user.email = info_user['email']
+    print(f'Et là ? {info_user['role']}')
+    user.role.id = info_user['role']
+    print(f'End : {user}')
+
+    p.session.commit()
+
+
 def get_user_from_mail_pass(email, password):
     """
     Return user if found, 404 if not, 401 if password False
     """
-    hashed_password = PasswordHasher().hash(password)
     result = p.session.query(uModels.User).filter(uModels.User.email == email).first()
 
     if result is None:
