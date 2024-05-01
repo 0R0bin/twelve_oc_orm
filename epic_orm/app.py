@@ -11,7 +11,6 @@ from users.cli import cli_user
 from sqlalchemy import inspect
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# WITH HELP OF https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_updating_objects.htm
 
 def init_app():
     data = ctrlGloal.read_env_file()
