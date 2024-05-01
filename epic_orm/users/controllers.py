@@ -1,4 +1,5 @@
 import provider as p
+import sentry_sdk as sLog
 
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
@@ -44,7 +45,8 @@ def get_user_from_mail_pass(email, password):
 
     try:
         PasswordHasher().verify(result.password, password)
-    except VerifyMismatchError:
+    except VerifyMismatchError as e:
+        sLog.capture_exception(e)
         return 401
 
     return result

@@ -2,6 +2,7 @@ import datetime as dt
 import json
 import jwt
 import os
+import sentry_sdk as sLog
 
 from config_app.controllers import read_env_file
 
@@ -34,7 +35,8 @@ def check_token():
         with open('../files/token.json', 'r') as f:
             token_data = json.load(f)
             return token_data
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        sLog.capture_exception(e)
         return None
 
 
@@ -44,7 +46,8 @@ def del_jwt():
     """
     try:
         os.remove('../files/token.json')
-    except Exception:
+    except Exception as e:
+        sLog.capture_exception(e)
         pass
 
 
@@ -64,7 +67,8 @@ def read_jwt_user_info():
                 return 400
         else:
             return 401
-    except Exception:
+    except Exception as e:
+        sLog.capture_exception(e)
         return None
 
 

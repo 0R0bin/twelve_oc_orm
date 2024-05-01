@@ -1,5 +1,6 @@
 import json
 import provider as p
+import sentry_sdk as sLog
 import users.controllers as caCtrl
 
 from clients.models import ClientModels
@@ -17,7 +18,8 @@ def read_env_file():
             """
             data = json.load(f)
         return data
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        sLog.capture_exception(e)
         return None
 
 
