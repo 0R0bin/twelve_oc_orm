@@ -2,11 +2,12 @@ def list_all_events(queryset):
     if queryset == []:
         print('Aucun évènement trouvé')
         return
-    
+
     for row in queryset:
         print(f'- ID: {row.id} | Nom: {row.nom} | Date Début: {row.date_start} | Date Fin: {row.date_end}' +
               f'Localisation: {row.location} | Attendus: {row.attendees} | Notes : {row.notes} | Contrat : {row.contract}'
               + f'Support: {row.support} | Client: {row.client}\n')
+
 
 def get_info_event(bCreate):
     if bCreate is True:
@@ -24,6 +25,7 @@ def get_info_event(bCreate):
 
     return {'name': name, "date_start": date_start, "date_end": date_end, "location": location, 'attendees': attendees, 'notes': notes}
 
+
 def get_info_filter_event(bDel):
     if bDel is True:
         print('\n===============Suppression d\'un évènement===============\n')
@@ -36,18 +38,19 @@ def get_info_filter_event(bDel):
     while True:
         choice_filter = input('\nChoix : ')
 
-        if not choice_filter in ["1", "2"]:
+        if choice_filter not in ["1", "2"]:
             print('Merci d\'entrer une valeur correcte')
         else:
             print(f'Choix {choice_filter} enregistré')
             break
-    
+
     if choice_filter == '1':
         param = input('Merci de renseigner l\'identifiant souhaité : ')
     if choice_filter == '2':
         param = input('Merci de renseigner le nom souhaité : ')
 
     return {'param': param, 'choice': choice_filter}
+
 
 def confirm_event(event):
     print(f'ID: {event.id} | Nom: {event.nom} | Position: {event.location} | Notes: {event.notes}\n')
@@ -59,7 +62,7 @@ def confirm_event(event):
 
 
 def choice_user_to_add():
-    print(f'Merci de choisir l\'identifiant d\'un membre du support')
+    print('Merci de choisir l\'identifiant d\'un membre du support')
     choice = input('Confirmez-vous ce choix ? (y pour oui, n pour non) ')
 
     if choice in ['y', 'yes', 'YES', 'oui', 'o', 'O', 'Y', 'OUI']:

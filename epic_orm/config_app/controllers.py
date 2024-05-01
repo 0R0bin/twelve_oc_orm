@@ -14,7 +14,7 @@ def read_env_file():
     try:
         with open("../files/env.json", "r") as f:
             """
-            Get sensible data from JSON so any OS will work 
+            Get sensible data from JSON so any OS will work
             """
             data = json.load(f)
         return data

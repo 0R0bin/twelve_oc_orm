@@ -10,6 +10,7 @@ def cli_client():
     """Click Group for user"""
     pass
 
+
 @cli_client.command()
 def list_all():
     """ List All Clients In DB """
@@ -63,4 +64,3 @@ def modify():
     info_client = clViews.get_info_user(False)
     clCtrl.put_client(info_client, client)
     click.echo('Modification confirmée')
-

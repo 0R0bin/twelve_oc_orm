@@ -3,9 +3,10 @@ def list_all_clients(queryset):
     if queryset == []:
         print('Aucun Client trouvé')
         return
-    
+
     for row in queryset:
-        print(f'ID: {row.id} | Nom: {row.complete_name} | Mail: {row.email} | Entreprise: {row.enterprise_name} | Téléphone: {row.phone} | Contact commercial: {row.contact_commercial}')
+        print(f'ID: {row.id} | Nom: {row.complete_name} | Mail: {row.email} | Entreprise: {row.enterprise_name} | Téléphone: {row.phone} |' +
+              'Contact commercial: {row.contact_commercial}')
 
 
 def get_info_filter_client(display_title):
@@ -22,12 +23,12 @@ def get_info_filter_client(display_title):
     while True:
         choice_filter = input('\nChoix : ')
 
-        if not choice_filter in ["1", "2", "3"]:
+        if choice_filter not in ["1", "2", "3"]:
             print('Merci d\'entrer une valeur correcte')
         else:
             print(f'Choix {choice_filter} enregistré')
             break
-    
+
     if choice_filter == '1':
         param = input('Merci de renseigner l\'identifiant souhaité : ')
     if choice_filter == '2':
@@ -58,5 +59,5 @@ def get_info_user(bCreate):
     phone = input('\nMerci de renseigner le téléphone : ')
     enterprise_name = input('\nMerci de renseigner le nom de l\'entreprise : ')
 
-
-    return {'complete_name': complete_name, 'email': email, "phone": phone, "enterprise_name": enterprise_name}
+    return {'complete_name': complete_name, 'email': email,
+            "phone": phone, "enterprise_name": enterprise_name}

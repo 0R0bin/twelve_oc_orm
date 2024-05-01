@@ -5,14 +5,13 @@ import clients.controllers as clCtrl
 import clients.views as clViews
 import contracts.controllers as ctCtrl
 import contracts.views as ctViews
-# import users.controllers as uCtrl
-# import users.views as uViews
 
 
 @click.group(name='contract')
 def cli_contract():
     """Click Group for Event"""
     pass
+
 
 @cli_contract.command()
 @click.argument("filter", type=int, default=0)
@@ -21,7 +20,7 @@ def list_all(filter):
     List All Contracts In DB\n
     [ARGUMENT] filter\n
     You can add 1 to retrieve all contracts not signed\n
-    Or 2 to retreive all contracts  not paid 
+    Or 2 to retreive all contracts  not paid
     """
     authorized = cViews.check_perm([1, 2, 3])
     if authorized is False:
@@ -70,7 +69,7 @@ def modify():
     authorized = cViews.check_perm([1, 2])
     if authorized is False:
         return
-    
+
     user = cAC.get_user_info()
 
     info_filter = ctViews.get_info_filter_contract()

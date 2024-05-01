@@ -1,5 +1,3 @@
-import users.controllers as uCtrl
-
 def get_info_user(bCreate):
     if bCreate is True:
         print('\n===============Enregistrement d\'un nouvel utilisateur===============\n')
@@ -18,13 +16,13 @@ def get_info_user(bCreate):
     while True:
         role = input('\nChoix : ')
 
-        if not role in ["1", "2", "3"]:
+        if role not in ["1", "2", "3"]:
             print('Merci d\'entrer une valeur correcte')
         else:
             print(f'Choix {role} enregistré')
             break
 
-    return {'en': employe_number, 'name': name, "email": email, "password": password if bCreate is True else None, "role":role}
+    return {'en': employe_number, 'name': name, "email": email, "password": password if bCreate is True else None, "role": role}
 
 
 def get_info_filter_user(bDel):
@@ -42,12 +40,12 @@ def get_info_filter_user(bDel):
     while True:
         choice_filter = input('\nChoix : ')
 
-        if not choice_filter in ["1", "2", "3"]:
+        if choice_filter not in ["1", "2", "3"]:
             print('Merci d\'entrer une valeur correcte')
         else:
             print(f'Choix {choice_filter} enregistré')
             break
-    
+
     if choice_filter == '1':
         param = input('Merci de renseigner l\'identifiant souhaité : ')
     if choice_filter == '2':
@@ -62,9 +60,10 @@ def list_all_users(queryset):
     if queryset == []:
         print('Aucun utilisateur trouvé')
         return
-    
+
     for row in queryset:
         print(f'ID: {row.id} | Numéro employé: {row.employe_number} | Nom: {row.nom} | EMail: {row.email} | Rôle: {row.role}')
+
 
 def confirm_user(user):
     print(f'ID: {user.id} | Numéro employé: {user.employe_number} | Nom: {user.nom} | EMail: {user.email} | Rôle: {user.role}\n')

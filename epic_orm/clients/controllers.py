@@ -3,6 +3,7 @@ import provider as p
 
 from clients.models import ClientModels as clModels
 
+
 def get_all_clients():
     """
     Return all clients in DB
@@ -10,6 +11,7 @@ def get_all_clients():
     result = p.session.query(clModels.Client).all()
 
     return result
+
 
 def get_client_with_filter(info):
     """
@@ -29,6 +31,7 @@ def get_client_with_filter(info):
 
     return result
 
+
 def put_client(info, client):
     """ With information provided, put client in database """
     client.complete_name = info['complete_name']
@@ -38,6 +41,7 @@ def put_client(info, client):
     client.last_update_at = datetime.datetime.now()
 
     p.session.commit()
+
 
 def create_client(info_client, user_id):
     """ With information provided, save client in database """

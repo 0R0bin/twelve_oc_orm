@@ -30,6 +30,7 @@ def put_event(info_event, event):
 
     p.session.commit()
 
+
 def patch_event_supprt(id_support, event):
     """ With information provided, put event in database """
     event.support_id = id_support
@@ -44,11 +45,12 @@ def get_all_events(filter, user):
     result = p.session.query(eModels.Event).all()
 
     if filter == 1:
-       result = p.session.query(eModels.Event).filter(eModels.Event.support_id == None)
+        result = p.session.query(eModels.Event).filter(eModels.Event.support_id is None)
     elif filter == 3:
-       result = p.session.query(eModels.Event).filter(eModels.Event.support_id == user['id'])
+        result = p.session.query(eModels.Event).filter(eModels.Event.support_id == user['id'])
 
     return result
+
 
 def get_event_with_filter(info):
     """

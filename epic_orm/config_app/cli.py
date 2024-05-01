@@ -15,6 +15,7 @@ def init_db():
     caCtrls.add_first_user()
     click.echo('Base de données initialisée')
 
+
 @click.command()
 @click.argument("email", type=str, required=True)
 @click.password_option()
@@ -32,6 +33,7 @@ def login(email, password):
 
     caAuthCtrl.gen_jwt_with_user_info(user)
     click.echo('Connexion réussie')
+
 
 @click.command()
 def logout():

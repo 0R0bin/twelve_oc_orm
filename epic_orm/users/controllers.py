@@ -70,6 +70,7 @@ def get_user_with_filter(info):
 
     return result
 
+
 def get_all_users(filter_role):
     """
     Return all users in DB, possible filter

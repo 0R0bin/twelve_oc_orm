@@ -12,6 +12,7 @@ from users.cli import cli_user
 from sqlalchemy import inspect
 from sqlalchemy.orm import declarative_base, sessionmaker
 
+
 def activation_sentry():
     sentry_sdk.init(
         dsn="https://deb0c84ce90a1d11b195c386a692d0aa@o4507182917812224.ingest.de.sentry.io/4507182921220176",
@@ -24,11 +25,12 @@ def activation_sentry():
         profiles_sample_rate=1.0,
     )
 
+
 def init_app():
     data = ctrlGloal.read_env_file()
 
     p.engine = db.create_engine(
-        f"postgresql:///?user={data["DB_USER"]}&password={data["DB_PASS"]}&database={data["DB_NAME"]}&host={data["DB_HOST"]}&port={data["DB_PORT"]}", 
+        f"postgresql:///?user={data["DB_USER"]}&password={data["DB_PASS"]}&database={data["DB_NAME"]}&host={data["DB_HOST"]}&port={data["DB_PORT"]}",
         echo=False)
     p.Base = declarative_base()
     Session = sessionmaker(bind=p.engine)
@@ -39,6 +41,7 @@ def init_app():
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(cliGlobal.init_db)
 cli.add_command(cliGlobal.login)

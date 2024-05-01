@@ -3,7 +3,10 @@ import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import declarative_base, relationship
 
+
 Base = declarative_base()
+
+
 class UserModels():
     class User(Base):
         __tablename__ = "user"
@@ -29,7 +32,7 @@ class UserModels():
 
         def __repr__(self):
             return f'{self.nom}'
-    
+
     def init_db(engine):
         Base.metadata.create_all(engine)
         return Base

@@ -24,7 +24,6 @@ def gen_jwt_with_user_info(obj_user):
 
     with open('../files/token.json', 'w') as f:
         json.dump(token, f)
-    
 
 
 def check_token():

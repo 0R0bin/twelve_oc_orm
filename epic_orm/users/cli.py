@@ -9,6 +9,7 @@ def cli_user():
     """Click Group for user"""
     pass
 
+
 @cli_user.command()
 def list_all():
     """ List All Users In DB """
@@ -18,6 +19,7 @@ def list_all():
 
     queryset = uCtrl.get_all_users(0)
     uViews.list_all_users(queryset)
+
 
 @cli_user.command()
 def create():
@@ -68,7 +70,7 @@ def modify():
     if user == 404:
         click.echo('Utilisateur pas trouvé')
         return
-    
+
     choice = uViews.confirm_user(user)
 
     if choice is False:
@@ -78,4 +80,3 @@ def modify():
     info_user = uViews.get_info_user(False)
     uCtrl.put_user(info_user, user)
     click.echo('Modification confirmée')
-

@@ -1,10 +1,12 @@
 import config_app.auth_controller as cAC
 
+
 def add_roles():
     print('Ajout des rôles suivants dans la base de donneés :')
     print('\n1 - Gestion')
     print('2 - Commercial')
     print('3 - Support')
+
 
 def add_first_user():
     print('\nCréation de l\'utilisateur admin, informations :')
@@ -13,6 +15,7 @@ def add_first_user():
     print('Email: admin@admin.fr')
     print('Mot de passe: 123test456')
     print('Rôle: Gestion')
+
 
 def check_perm(accepted_items):
     user = cAC.read_jwt_user_info()
@@ -32,5 +35,5 @@ def check_perm(accepted_items):
     if not user['role'] in accepted_items:
         print('Vous n\'avez pas les droits nécessaires')
         return False
-    
+
     return True

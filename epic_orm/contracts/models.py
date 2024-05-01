@@ -4,6 +4,7 @@ from clients.models import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Boolean
 from sqlalchemy.orm import relationship
 
+
 class ContractModels():
     class Contract(Base):
         __tablename__ = "contract"

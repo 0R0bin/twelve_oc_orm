@@ -14,13 +14,14 @@ def cli_event():
     """Click Group for Event"""
     pass
 
+
 @cli_event.command()
 @click.argument("filter", type=bool, default=False)
 def list_all(filter):
     """
     List All Event In DB\n
     [ARGUMENT] filter\n
-    You can add "True" to command, depending on your role, filter will be applied 
+    You can add "True" to command, depending on your role, filter will be applied
     """
     authorized = cViews.check_perm([1, 2, 3])
     if authorized is False:
@@ -36,6 +37,7 @@ def list_all(filter):
             queryset = eCtrl.get_all_events(3, user)
 
     eViews.list_all_events(queryset)
+
 
 @cli_event.command()
 def create():
@@ -53,13 +55,14 @@ def create():
     eCtrl.create_event(info_event, contract)
     click.echo('Evènement ajouté')
 
+
 @cli_event.command()
 def modify():
     """ PUT Event to DB """
     authorized = cViews.check_perm([1, 3])
     if authorized is False:
         return
-    
+
     user = cAC.get_user_info()
 
     info_filter = eViews.get_info_filter_event(False)
@@ -68,7 +71,7 @@ def modify():
     if event == 404:
         click.echo('Evènement introuvable')
         return
-    
+
     choice = eViews.confirm_event(event)
 
     if choice is False:

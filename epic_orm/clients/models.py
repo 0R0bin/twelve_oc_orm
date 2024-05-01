@@ -2,7 +2,7 @@ import datetime
 
 from users.models import Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.orm import  relationship
+from sqlalchemy.orm import relationship
 
 
 class ClientModels():
