@@ -25,13 +25,10 @@ def save_user_to_db(info_user):
 
 def put_user(info_user, user):
     """ With information provided, put user in database """
-    print(f'Je suis arrivé jusque là ! {user}')
     user.employe_number = info_user['en']
     user.nom = info_user['name']
     user.email = info_user['email']
-    print(f'Et là ? {info_user['role']}')
     user.role.id = info_user['role']
-    print(f'End : {user}')
 
     p.session.commit()
 
@@ -71,11 +68,18 @@ def get_user_with_filter(info):
 
     return result
 
-def get_all_users():
+def get_all_users(filter_role):
     """
-    Return all users in DB
+    Return all users in DB, possible filter
     """
     result = p.session.query(uModels.User).all()
+
+    if filter_role == 1:
+        result = p.session.query(uModels.User).filter(uModels.User.role_id == 1)
+    if filter_role == 2:
+        result = p.session.query(uModels.User).filter(uModels.User.role_id == 2)
+    if filter_role == 3:
+        result = p.session.query(uModels.User).filter(uModels.User.role_id == 3)
 
     return result
 

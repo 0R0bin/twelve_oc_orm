@@ -18,6 +18,8 @@ class EventModels():
         contract = relationship("Contract", foreign_keys=[contract_id])
         client_id = Column(Integer, ForeignKey("client.id"))
         client = relationship("Client", foreign_keys=[client_id])
+        support_id = Column(Integer, ForeignKey("user.id"), nullable=True)
+        support = relationship("User", foreign_keys=[support_id])
     
     def init_db(engine):
         Base.metadata.create_all(engine)

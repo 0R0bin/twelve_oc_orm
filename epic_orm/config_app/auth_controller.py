@@ -66,3 +66,8 @@ def read_jwt_user_info():
             return 401
     except Exception:
         return None
+
+
+def get_user_info():
+    user = read_jwt_user_info()
+    return user

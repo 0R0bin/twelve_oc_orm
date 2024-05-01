@@ -30,6 +30,8 @@ def get_info_user(bCreate):
 def get_info_filter_user(bDel):
     if bDel is True:
         print('\n===============Suppression d\'un utilisateur===============\n')
+    elif bDel is None:
+        print('\n===============Ajout d\'un utilisateur===============\n')
     else:
         print('\n===============Modiciation d\'un utilisateur===============\n')
     print('\nMerci de renseigner le filter à appliquer (à l\'aide du numéro) :')

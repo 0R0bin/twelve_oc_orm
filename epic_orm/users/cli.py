@@ -1,6 +1,5 @@
 import click
 import config_app.views as cViews
-import config_app.auth_controller as cAC
 import users.controllers as uCtrl
 import users.views as uViews
 
@@ -17,7 +16,7 @@ def list_all():
     if authorized is False:
         return
 
-    queryset = uCtrl.get_all_users()
+    queryset = uCtrl.get_all_users(0)
     uViews.list_all_users(queryset)
 
 @cli_user.command()

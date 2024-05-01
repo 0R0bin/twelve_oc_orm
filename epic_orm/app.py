@@ -4,6 +4,7 @@ import config_app.cli as cliGlobal
 import config_app.controllers as ctrlGloal
 import provider as p
 
+from events.cli import cli_event
 from users.cli import cli_user
 from sqlalchemy import inspect
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -30,6 +31,7 @@ cli.add_command(cliGlobal.init_db)
 cli.add_command(cliGlobal.login)
 cli.add_command(cliGlobal.logout)
 cli.add_command(cli_user)
+cli.add_command(cli_event)
 
 
 if __name__ == '__main__':
