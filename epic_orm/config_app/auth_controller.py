@@ -3,7 +3,7 @@ import json
 import jwt
 import os
 
-from controllers import read_env_file
+from config_app.controllers import read_env_file
 
 
 def gen_jwt_with_user_info(obj_user):
@@ -14,14 +14,14 @@ def gen_jwt_with_user_info(obj_user):
     env = read_env_file()
     data = {
         'username': obj_user.employe_number,
-        'exp': dt.now(tz=dt.timezone.utc) + dt.timedelta(minutes=env['LIFETIME_TOKEN']),
+        'exp': dt.datetime.now(tz=dt.timezone.utc) + dt.timedelta(minutes=env['LIFETIME_TOKEN']),
         'role': obj_user.role.id
     }
 
     token = jwt.encode(data, env['SECRET_KEY'], algorithm='HS256')
 
     with open('../files/token.json', 'w') as f:
-        json.dump(token, f, indent=4)
+        json.dump(token, f)
     
 
 

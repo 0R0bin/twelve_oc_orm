@@ -1,5 +1,6 @@
 import json
 import provider as p
+import users.controllers as caCtrl
 
 from clients.models import ClientModels
 from contracts.models import ContractModels
@@ -34,4 +35,12 @@ def add_roles():
     commercial = UserModels.Role(nom='Commercial')
     support = UserModels.Role(nom='Support')
     p.session.add_all([gestion, commercial, support])
+    p.session.commit()
+
+
+def add_first_user():
+    """ Add User to DB """
+    h_pass = caCtrl.hash_password('123test456')
+    user = UserModels.User(employe_number='123456789', nom='Admin', email='admin@admin.fr', password=h_pass, role_id=1)
+    p.session.add(user)
     p.session.commit()

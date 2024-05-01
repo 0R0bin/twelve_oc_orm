@@ -1,6 +1,7 @@
 import provider as p
 
 from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError
 from users.models import UserModels as uModels
 
 
@@ -23,5 +24,18 @@ def save_user_to_db(info_user):
 
 
 def get_user_from_mail_pass(email, password):
+    """
+    Return user if found, 404 if not, 401 if password False
+    """
     hashed_password = PasswordHasher().hash(password)
-    pass
+    result = p.session.query(uModels.User).filter(uModels.User.email == email).first()
+
+    if result is None:
+        return 404
+
+    try:
+        PasswordHasher().verify(result.password, password)
+    except VerifyMismatchError:
+        return 401
+
+    return result

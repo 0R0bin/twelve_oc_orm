@@ -13,7 +13,7 @@ def init_app():
 
     p.engine = db.create_engine(
         f"postgresql:///?user={data["DB_USER"]}&password={data["DB_PASS"]}&database={data["DB_NAME"]}&host={data["DB_HOST"]}&port={data["DB_PORT"]}", 
-        echo=True)
+        echo=False)
     p.Base = declarative_base()
     Session = sessionmaker(bind=p.engine)
     p.session = Session()
@@ -25,9 +25,9 @@ def cli():
     pass
 
 cli.add_command(cliGlobal.init_db)
+cli.add_command(cliGlobal.login)
+cli.add_command(cliGlobal.logout)
 cli.add_command(cli_user)
-# cli.add_command(cliGlobal.login)
-# cli.add_command(cliGlobal.logout)
 
 
 if __name__ == '__main__':
