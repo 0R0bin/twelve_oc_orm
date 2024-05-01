@@ -3,7 +3,7 @@ import provider as p
 from events.models import EventModels as eModels
 
 
-def create_event(info_event):
+def create_event(info_event, contract):
     """ With information provided, save event in database """
     event_to_add = eModels.Event(
         nom=info_event['name'],
@@ -12,6 +12,8 @@ def create_event(info_event):
         location=info_event['location'],
         attendees=int(info_event['attendees']),
         notes=info_event['notes'],
+        contract_id=contract.id,
+        client_id=contract.client.id
         )
     p.session.add(event_to_add)
     p.session.commit()

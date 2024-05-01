@@ -44,11 +44,10 @@ def get_contract_with_filter(info):
 
    return result
 
-def put_contract(info_contract, user):
+def put_contract(info_contract, contract):
    """ With information provided, put user in database """
-   user.employe_number = info_user['en']
-   user.nom = info_user['name']
-   user.email = info_user['email']
-   user.role.id = info_user['role']
+   contract.unique_id = info_contract['unique_id']
+   contract.total_amount = info_contract['total_amount']
+   contract.total_amount_left = info_contract['total_amount_left']
 
    p.session.commit()

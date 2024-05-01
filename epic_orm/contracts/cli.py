@@ -66,7 +66,7 @@ def create():
 
 @cli_contract.command()
 def modify():
-    """ PUT Event to DB """
+    """ PUT Contract to DB """
     authorized = cViews.check_perm([1, 2])
     if authorized is False:
         return

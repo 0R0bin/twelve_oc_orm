@@ -1,6 +1,8 @@
 import click
 import config_app.auth_controller as cAC
 import config_app.views as cViews
+import contracts.controllers as ctCtrl
+import contracts.views as ctViews
 import events.controllers as eCtrl
 import events.views as eViews
 import users.controllers as uCtrl
@@ -43,7 +45,12 @@ def create():
         return
 
     info_event = eViews.get_info_event(True)
-    eCtrl.create_event(info_event)
+    info_filter = ctViews.get_info_filter_contract()
+    contract = ctCtrl.get_contract_with_filter(info_filter)
+    if contract == 404:
+        click.echo('Contrat introuvable')
+        return
+    eCtrl.create_event(info_event, contract)
     click.echo('Evènement ajouté')
 
 @cli_event.command()
