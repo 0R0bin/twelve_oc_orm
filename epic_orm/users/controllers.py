@@ -39,3 +39,38 @@ def get_user_from_mail_pass(email, password):
         return 401
 
     return result
+
+
+def get_user_with_filter(info):
+    """
+    Return all user if choice == 1 by id, 2 by num, 3 by mail
+    """
+    choice_filter = int(info['choice'])
+
+    if choice_filter == 1:
+        result = p.session.query(uModels.User).filter(uModels.User.id == info['param']).first()
+    if choice_filter == 2:
+        result = p.session.query(uModels.User).filter(uModels.User.employe_number == info['param']).first()
+    if choice_filter == 3:
+        result = p.session.query(uModels.User).filter(uModels.User.email == info['param']).first()
+
+    if result is None:
+        return 404
+
+    return result
+
+def get_all_users():
+    """
+    Return all users in DB
+    """
+    result = p.session.query(uModels.User).all()
+
+    return result
+
+
+def del_user(user):
+    """
+    Delete user
+    """
+    p.session.delete(user)
+    p.session.commit()

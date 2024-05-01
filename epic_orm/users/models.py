@@ -28,7 +28,7 @@ class UserModels():
         nom = Column(String(255), unique=True, nullable=False)
 
         def __repr__(self):
-            return f'User {self.nom}'
+            return f'{self.nom}'
     
     def init_db(engine):
         Base.metadata.create_all(engine)

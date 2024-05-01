@@ -13,7 +13,7 @@ def gen_jwt_with_user_info(obj_user):
     """
     env = read_env_file()
     data = {
-        'id': obj_user.employe_number,
+        'id': obj_user.id,
         'username': obj_user.employe_number,
         'exp': dt.datetime.now(tz=dt.timezone.utc) + dt.timedelta(minutes=env['LIFETIME_TOKEN']),
         'role': obj_user.role.id
@@ -32,8 +32,8 @@ def check_token():
     """
     try:
         with open('../files/token.json', 'r') as f:
-            session_data = json.load(f)
-            return session_data
+            token_data = json.load(f)
+            return token_data
     except FileNotFoundError:
         return None
 
@@ -50,15 +50,19 @@ def del_jwt():
 
 def read_jwt_user_info():
     """
-    Read User Information
+    Read User Information & Check date exp
     """
     try:
         token = check_token()
         if token:
             env = read_env_file()
             user_info = jwt.decode(token, env['SECRET_KEY'], algorithms=['HS256'])
-            return user_info['role']
+
+            if user_info['exp'] > dt.datetime.now(tz=dt.timezone.utc).timestamp():
+                return user_info
+            else:
+                return 400
         else:
-            return None
+            return 401
     except Exception:
         return None

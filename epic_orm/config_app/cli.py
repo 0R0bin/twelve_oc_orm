@@ -19,7 +19,7 @@ def init_db():
 @click.argument("email", type=str, required=True)
 @click.password_option()
 def login(email, password):
-    """ Login User """
+    """ Login User | [OPTIONS] email"""
     user = uCtrls.get_user_from_mail_pass(email, password)
 
     if user == 404:

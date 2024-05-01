@@ -1,4 +1,6 @@
 import click
+import config_app.views as cViews
+import config_app.auth_controller as cAC
 import users.controllers as uCtrl
 import users.views as uViews
 
@@ -9,8 +11,58 @@ def cli_user():
     pass
 
 @cli_user.command()
-def create_user():
+def list_all():
+    """ List All Users In DB """
+    authorized = cViews.check_perm([1])
+    if authorized is False:
+        return
+
+    queryset = uCtrl.get_all_users()
+    uViews.list_all_users(queryset)
+
+@cli_user.command()
+def create():
     """ Add User to DB """
+    authorized = cViews.check_perm([1])
+    if authorized is False:
+        return
+
+    info_user = uViews.get_info_create_user()
+    uCtrl.save_user_to_db(info_user)
+    click.echo('Utilisateur ajouté')
+
+
+@cli_user.command()
+def delete():
+    """ Delete User in DB """
+    authorized = cViews.check_perm([1])
+    if authorized is False:
+        return
+
+    info_filter = uViews.get_info_filter_del_user()
+    user = uCtrl.get_user_with_filter(info_filter)
+
+    if user == 404:
+        click.echo('Utilisateur pas trouvé')
+        return
+
+    choice = uViews.confirm_user(user)
+
+    if choice is True:
+        uCtrl.del_user(user)
+        click.echo('Utilisateur supprimé')
+        return
+
+    click.echo('Suppression annulée')
+
+
+@cli_user.command()
+def modify():
+    """ PUT User in DB """
+    authorized = cViews.check_perm([1])
+    if authorized is False:
+        return
+
     info_user = uViews.get_info_create_user()
     uCtrl.save_user_to_db(info_user)
     click.echo('Utilisateur ajouté')
