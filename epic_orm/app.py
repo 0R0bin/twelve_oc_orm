@@ -24,7 +24,7 @@ def init_app():
 def cli():
     pass
 
-cli.add_command(cliGlobal.create_tables)
+cli.add_command(cliGlobal.init_db)
 cli.add_command(cli_user)
 # cli.add_command(cliGlobal.login)
 # cli.add_command(cliGlobal.logout)

@@ -3,10 +3,11 @@ import config_app.controllers as caCtrls
 
 
 @click.command()
-def create_tables():
+def init_db():
     """ Create tables at first use"""
     caCtrls.create_tables_db()
-    click.echo('Initialized the database')
+    caCtrls.add_roles()
+    click.echo('Base de données initialisée')
 
 @click.command()
 @click.argument("email", type=str, required=True)
