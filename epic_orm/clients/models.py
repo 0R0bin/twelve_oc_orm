@@ -1,6 +1,6 @@
 import datetime
 
-from users.models import Base, UserModels
+from users.models import Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import  relationship
 
@@ -18,7 +18,7 @@ class ClientModels():
         created_at = Column(DateTime, default=datetime.datetime.now())
         contact_commercial_id = Column(Integer, ForeignKey("user.id"))
 
-        contact_commercial = relationship("UserModels.User", foreign_keys=[contact_commercial_id])
+        contact_commercial = relationship("User", foreign_keys=[contact_commercial_id])
 
     def init_db(engine):
         Base.metadata.create_all(engine)

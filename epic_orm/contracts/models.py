@@ -1,6 +1,6 @@
 import datetime
 
-from clients.models import ClientModels, Base
+from clients.models import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Boolean
 from sqlalchemy.orm import relationship
 
@@ -16,7 +16,7 @@ class ContractModels():
         created_at = Column(DateTime, default=datetime.datetime.utcnow)
         statut_signed = Column(Boolean, default=False)
 
-        client = relationship("ClientModels.Client", foreign_keys=[client_id])
+        client = relationship("Client", foreign_keys=[client_id])
 
     def init_db(engine):
         Base.metadata.create_all(engine)

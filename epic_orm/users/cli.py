@@ -1,4 +1,5 @@
 import click
+import users.controllers as uCtrl
 import users.views as uViews
 
 
@@ -11,4 +12,5 @@ def cli_user():
 def create_user():
     """ Add User to DB """
     info_user = uViews.get_info_create_user()
+    uCtrl.save_user_to_db(info_user)
     print(info_user)

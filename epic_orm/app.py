@@ -15,7 +15,8 @@ def init_app():
         f"postgresql:///?user={data["DB_USER"]}&password={data["DB_PASS"]}&database={data["DB_NAME"]}&host={data["DB_HOST"]}&port={data["DB_PORT"]}", 
         echo=True)
     p.Base = declarative_base()
-    p.session = sessionmaker(bind=p.engine)
+    Session = sessionmaker(bind=p.engine)
+    p.session = Session()
     p.inspector = inspect(p.engine)
 
 
