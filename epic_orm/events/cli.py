@@ -82,6 +82,10 @@ def modify():
         eCtrl.patch_event_supprt(user.id, event)
     # Si l'utilisateur est un Support
     else:
+        if event.support_id != user['id']:
+            click.echo('Vous n\'êtes pas afecté à cet évènement')
+            return
+
         info_event = eViews.get_info_event(False)
         eCtrl.put_event(info_event, event)
 

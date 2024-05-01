@@ -10,9 +10,9 @@ def list_all_events(queryset):
 
 def get_info_event(bCreate):
     if bCreate is True:
-        print('\n===============Enregistrement d\'un nouvel évènement===============\n')
+        print('\n===============Enregistrement d\'un nouvel évènement===============')
     else:
-        print('\n===============Modification d\'un évènement===============\n')
+        print('\n===============Modification d\'un évènement===============')
     name = input('\nMerci de renseigner le nom : ')
     print('Les dates sont au format YYYY-MM-DD, exemple : 2024-05-01')
     print('Vous pouvez ajouter l\'heure exemple : 2024-05-01 08:00:00')
