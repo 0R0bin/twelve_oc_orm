@@ -5,6 +5,7 @@ import config_app.controllers as ctrlGloal
 import provider as p
 
 from clients.cli import cli_client
+from contracts.cli import cli_contract
 from events.cli import cli_event
 from users.cli import cli_user
 from sqlalchemy import inspect
@@ -32,6 +33,7 @@ cli.add_command(cliGlobal.init_db)
 cli.add_command(cliGlobal.login)
 cli.add_command(cliGlobal.logout)
 cli.add_command(cli_client)
+cli.add_command(cli_contract)
 cli.add_command(cli_event)
 cli.add_command(cli_user)
 

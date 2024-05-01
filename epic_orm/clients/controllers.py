@@ -13,7 +13,7 @@ def get_all_clients():
 
 def get_client_with_filter(info):
     """
-    Return all user if choice == 1 by id, 2 by num, 3 by mail
+    Return le client en fonction du filtre séléctionné
     """
     choice_filter = int(info['choice'])
 

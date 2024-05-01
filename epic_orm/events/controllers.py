@@ -3,7 +3,6 @@ import provider as p
 from events.models import EventModels as eModels
 
 
-
 def create_event(info_event):
     """ With information provided, save event in database """
     event_to_add = eModels.Event(
@@ -38,7 +37,7 @@ def patch_event_supprt(id_support, event):
 
 def get_all_events(filter, user):
     """
-    Return all users in DB
+    Return all events in DB
     """
     result = p.session.query(eModels.Event).all()
 
@@ -51,7 +50,7 @@ def get_all_events(filter, user):
 
 def get_event_with_filter(info):
     """
-    Return all user if choice == 1 by id, 2 by num, 3 by mail
+    Return all events if choice == 1 by id, 2 by num, 3 by mail
     """
     choice_filter = int(info['choice'])
 

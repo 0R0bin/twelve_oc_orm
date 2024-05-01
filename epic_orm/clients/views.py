@@ -8,9 +8,12 @@ def list_all_clients(queryset):
         print(f'ID: {row.id} | Nom: {row.complete_name} | Mail: {row.email} | Entreprise: {row.enterprise_name} | Téléphone: {row.phone} | Contact commercial: {row.contact_commercial}')
 
 
-def get_info_filter_client():
+def get_info_filter_client(display_title):
     """ Choix du filtre à appliquer """
-    print('\n===============Modification d\'un client===============\n')
+    if display_title is True:
+        print('\n===============Modification d\'un client===============\n')
+    else:
+        print('\n===============Recherche d\'un client===============\n')
     print('\nMerci de renseigner le filter à appliquer (à l\'aide du numéro) :')
     print('1 - Recherche par ID')
     print('2 - Recherche par nom complet')

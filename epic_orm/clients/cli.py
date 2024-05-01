@@ -43,10 +43,10 @@ def modify():
         return
 
     user = cAC.get_user_info()
-    info_filter = clViews.get_info_filter_client()
+    info_filter = clViews.get_info_filter_client(True)
     client = clCtrl.get_client_with_filter(info_filter)
 
-    if user == 404:
+    if client == 404:
         click.echo('Client pas trouvé')
         return
 

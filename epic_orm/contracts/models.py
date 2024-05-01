@@ -10,12 +10,12 @@ class ContractModels():
 
         id = Column(Integer, primary_key=True)
         unique_id = Column(String(255), unique=True, nullable=False)
-        client_id = Column(Integer, ForeignKey("client.id"))
-        total_amout = Column(Float, nullable=False)
-        total_amout_left = Column(Float, nullable=False)
-        created_at = Column(DateTime, default=datetime.datetime.utcnow)
+        total_amount = Column(Float, nullable=False)
+        total_amount_left = Column(Float, nullable=False)
+        created_at = Column(DateTime, default=datetime.datetime.now())
         statut_signed = Column(Boolean, default=False)
 
+        client_id = Column(Integer, ForeignKey("client.id"))
         client = relationship("Client", foreign_keys=[client_id])
 
     def init_db(engine):

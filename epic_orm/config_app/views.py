@@ -7,7 +7,7 @@ def add_roles():
     print('3 - Support')
 
 def add_first_user():
-    print('Création de l\'utilisateur admin, informations :')
+    print('\nCréation de l\'utilisateur admin, informations :')
     print('\nNom: Admin')
     print('Numéro employé: 123456789')
     print('Email: admin@admin.fr')
