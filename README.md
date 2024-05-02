@@ -94,3 +94,7 @@ Markdown
 ```
 https://github.com/Simplonline-foad/utiliser-markdown/blob/master/README.md
 ```
+## Améliorations possibles
+POETRY (Package manager)
+setup.py -> Transformation en package
+Voir console script en général

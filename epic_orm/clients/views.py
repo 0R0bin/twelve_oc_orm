@@ -6,7 +6,7 @@ def list_all_clients(queryset):
 
     for row in queryset:
         print(f'ID: {row.id} | Nom: {row.complete_name} | Mail: {row.email} | Entreprise: {row.enterprise_name} | Téléphone: {row.phone} |' +
-              'Contact commercial: {row.contact_commercial}')
+              f'Contact commercial: {row.contact_commercial}')
 
 
 def get_info_filter_client(display_title):
